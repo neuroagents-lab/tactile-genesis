@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tactile Genesis: Exploring Tactile Sensors at Scale for Learning Dexterous Tasks</title>
+  <meta name="description" content="A GPU-parallel tactile sensor simulation platform for studying which tactile abstractions a policy needs to learn dexterous manipulation.">
+
+  <!-- Open Graph / social preview -->
+  <meta property="og:title" content="Tactile Genesis">
+  <meta property="og:description" content="Exploring Tactile Sensors at Scale for Learning Dexterous Tasks.">
+  <meta property="og:image" content="static/images/thumbnail.png">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="static/css/style.css">
+</head>
+<body>
+
+  <!-- ===================== HERO ===================== -->
+  <header class="hero">
+    <div class="container">
+      <h2 class="title">Tactile&nbsp;Genesis</h2>
+      <p class="subtitle">Exploring Tactile Sensors at Scale for Learning Dexterous Tasks</p>
+
+      <ul class="authors">
+        <li><a href="https://trinityjchung.com" target="_blank" rel="noopener">Trinity Chung</a><sup>1</sup></li>
+        <li><a href="https://kashu7100.github.io" target="_blank" rel="noopener">Kashu Yamazaki</a><sup>1</sup></li>
+        <li>Dhruv Patel<sup>1</sup></li>
+        <li>Alexis Duburcq<sup>2</sup></li>
+        <li>Yiling Qiao<sup>2</sup></li>
+        <li><a href="https://www.cs.cmu.edu/~katef/" target="_blank" rel="noopener">Katerina Fragkiadaki</a><sup>1</sup></li>
+        <li><a href="https://anayebi.github.io" target="_blank" rel="noopener">Aran Nayebi</a><sup>1</sup></li>
+      </ul>
+
+      <ul class="affiliations">
+        <li><sup>1</sup>Carnegie Mellon University</li>
+        <li><sup>2</sup><a href="https://www.genesis.ai" target="_blank" rel="noopener">Genesis AI</a></li>
+      </ul>
+
+      <!-- <p class="venue">CoRL 2026</p> -->
+
+
+      <div class="links">
+        <a class="btn" href="#" target="_blank" rel="noopener">
+          <span class="ico">&#128196;</span> Paper
+        </a>
+        <a class="btn" href="https://github.com/neuroagents-lab/2026-tactile-genesis" target="_blank" rel="noopener">
+          <span class="ico">&#9679;</span> Code
+        </a>
+        <a class="btn" href="#video">
+          <span class="ico">&#9658;</span> Video
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===================== TEASER VIDEO ===================== -->
+  <section id="video" class="section section--tight">
+    <div class="container">
+      <video class="teaser" controls autoplay muted loop playsinline poster="static/images/thumbnail.png">
+        <source src="static/videos/overview.mp4" type="video/mp4">
+      </video>
+      <p class="caption">
+        We integrate tactile sensors in
+        <a href="https://genesis-embodied-ai.github.io/" target="_blank" rel="noopener">Genesis</a> physics simulation,
+        exposing a representative set of tactile sensing abstractions &mdash; binary contact, contact depth, per-taxel
+        force/torque, elastomer marker displacement, geometry-aware proximity, and a voxelized temperature field &mdash;
+        under a common, configurable interface that runs across thousands of parallel environments on a single GPU.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===================== ABSTRACT ===================== -->
+  <section class="section">
+    <div class="container container--narrow">
+      <h2>Abstract</h2>
+      <p>
+        
+Tactile sensing is critical for contact-rich dexterous manipulation, yet it remains unclear which tactile abstractions a policy needs and when richer tactile fields justify their hardware cost.
+This is hard to study empirically: each sensor effectively defines a new robot, and no lab can replicate the same learning experiment across all of them.
+We present Tactile Genesis, a GPU-parallel tactile sensor simulation platform that exposes binary contact, contact depth, per-taxel kinematic force/torque, elastomer marker displacement, geometry-aware proximity, contact audio, and a voxelized temperature field (the first of its kind in robot learning physics simulation platforms) under a common interface, with configurable placement, resolution, and a realistic noise model (drift, hysteresis, dead taxels, crosstalk).
+It scales past 20,000 parallel environments and 1,000 taxels on a single GPU, improving throughput by 3 to 20 times over previous tactile simulators.
+We train teacher-student policies on three dexterous tasks, ablating sensor type, placement, resolution, and noise, and verify transfer to the real XHand1.
+Proprioception alone is insufficient on every task.
+Sensor placement dominates sensor type: fingertip-only coverage trails whole-hand coverage by a wide margin, while adding the palm and proximal phalanges closes most of the gap to the privileged teacher.
+Resolution matters far less than coverage: placing 200 taxels across the whole hand suffices across tasks.
+We find that force/torque per taxel is consistently the most useful sensor type.
+These results give concrete guidance for both future tactile hardware design for improving robot hands and policy-side observation choice in dexterous manipulation.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===================== OVERVIEW FIGURE ===================== -->
+  <section class="section section--alt">
+    <div class="container">
+      <h2>Platform Overview</h2>
+      <figure>
+        <img src="static/images/figure1.png" alt="Overview of Tactile Genesis features" loading="lazy">
+        <figcaption>
+          <strong>Overview of Tactile Genesis features.</strong>
+          (a) Sensor physics configurable to match real analogues, including 6-axis force/torque, elastomer
+          displacement, and proximity signals. (b) Simulated per-taxel tactile force on an XHand1 compared to the real
+          XHand1. (c) Highly parallelized with heterogeneous objects and randomization. (d) Sensors apply to any robot
+          surface, and (e) placement can be of arbitrary shape and resolution. (f) A temperature sensor simulating
+          contact heat transfer, diffusion, generation, and radiation, plus a contact-audio sensor that the rigid-body
+          engine alone cannot capture.
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ===================== ELASTOMER COMPARISON FIGURE ===================== -->
+  <section class="section">
+    <div class="container">
+      <h2>Real GelSight / Elastomer Comparison</h2>
+      <figure>
+        <img src="static/images/figure9.png" alt="Real GelSight marker motion compared with simulated elastomer sensors" loading="lazy">
+        <figcaption>
+          <strong>Elastomer marker motion comparison.</strong>
+          Marker displacement fields on a real GelSight under dilation (normal indentation) and shear (tangential drag),
+          compared with FOTS, HydroShear, and our <code>ElastomerTaxel</code>. The right-side table reports relative
+          marker-displacement error after optimizing each simulator's parameters to match the real image.
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ===================== RESULTS FIGURE ===================== -->
+  <section class="section">
+    <div class="container">
+      <h2>Tactile Student Ablations</h2>
+      <figure>
+        <img src="static/images/figure5.png" alt="Tactile student ablations across three tasks" loading="lazy">
+        <figcaption>
+          <strong>Tactile student ablations.</strong> Across <code>in_palm_rotate</code>, <code>in_hand_repose</code>,
+          and <code>screwdriver</code> on the XHand1, we compare tactile data types against the privileged teacher and
+          distilled tactile student, varying placement (tips / fingers / whole hand), resolution, and noise.
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ===================== KEY FINDINGS ===================== -->
+  <section class="section section--alt">
+    <div class="container">
+      <h2>Key Findings</h2>
+      <div class="cards">
+        <div class="card">
+          <div class="card__num">01</div>
+          <h3>Proprioception is not enough</h3>
+          <p>The proprioception-only baseline trails every tactile student on all three tasks &mdash; even the cheapest
+          binary-contact variant. Touch is required to recover task-relevant object state.</p>
+        </div>
+        <div class="card">
+          <div class="card__num">02</div>
+          <h3>Placement &gt; sensor type</h3>
+          <p>Fingertip-only sensing (what most commercial hardware supports) trails whole-hand coverage by a wide
+          margin. Adding palm and proximal phalanges matters more than upgrading the fingertip sensor.</p>
+        </div>
+        <div class="card">
+          <div class="card__num">03</div>
+          <h3>Force/torque is a robust default</h3>
+          <p>Aggregated across tasks, per-taxel force/torque matches or outperforms every other abstraction &mdash; our
+          recommended default when hardware allows.</p>
+        </div>
+        <div class="card">
+          <div class="card__num">04</div>
+          <h3>Coverage &gt; resolution</h3>
+          <p>Resolution matters far less than coverage. Roughly 200 taxels spread across the whole hand suffice across
+          all tasks studied.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===================== CONTACT AUDIO DEMO ===================== -->
+  <section class="section">
+    <div class="container">
+      <h2>Contact Audio Demonstration</h2>
+      <figure class="media-stack">
+        <video class="demo-video" controls loop playsinline preload="metadata">
+          <source src="static/videos/contactaudio.mp4" type="video/mp4">
+        </video>
+        <img src="static/images/contactaudio.png" alt="Spectrogram of simulated contact audio across materials" loading="lazy">
+        <figcaption>
+          <strong>Contact audio sensor output.</strong>
+          As the ball bounces and rolls along the different materials (wood, metal, glass), the contact audio sensor synthesizes sound based on contact physics and the material properties, which the rigid-body engine alone cannot capture.
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ===================== BIBTEX ===================== -->
+  <section class="section section--alt">
+    <div class="container container--narrow">
+      <h2>BibTeX</h2>
+      <pre class="bibtex"><code>@inproceedings{chung2026tactilegenesis,
+  title     = {Tactile Genesis: Exploring Tactile Sensors at Scale
+               for Learning Dexterous Tasks},
+  author    = {Chung, Trinity and Yamazaki, Kashu and Patel, Dhruv and
+               Duburcq, Alexis and Qiao, Yiling and
+               Fragkiadaki, Katerina and Nayebi, Aran},
+  booktitle = {Conference on Robot Learning (CoRL)},
+  year      = {2026}
+}</code></pre>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="footer">
+    <div class="container">
+      <p class="footer__fine">
+        Website template adapted from the
+        <a href="https://nerfies.github.io/" target="_blank" rel="noopener">Nerfies</a> project page.
+      </p>
+    </div>
+  </footer>
+
+</body>
+</html>
