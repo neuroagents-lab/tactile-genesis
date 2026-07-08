@@ -1,0 +1,48 @@
+# Grasp sampling config for Sharpa + plug_insertion task.
+# The hand grasps the plug body (prongs pointing down) so it can be pushed into
+# the socket. Seed pose adapted from the screwdriver XHand1 grasp config.
+grasp_generation:
+  num_envs: 1024
+  num_grasps: 64
+  perturb_range: 0.2
+  # Require enough configured surface-distance sensors below threshold.
+  required_num_surface_distance_fingers: 3
+  surface_distance_threshold: 0.01
+  max_penetration: 0.003
+  max_displacement: 0.01
+  # Keep the object near the seeded hand-relative pose while bootstrapping grasps.
+  obj_pos_shift: "-0.01,0.01,-0.01,0.01,0.0,0.0"
+  obj_euler_range: "0,0,0,0,-180,180"
+  bottom_aligned: true
+  output_file: src/assets/grasps/screwdrivers_sharpa_grasps_64.pt
+
+scene_options:
+  robot:
+    default_root_pos: [-0.055000, -0.020000, 0.290000]
+    default_root_quat: [0.500000, 0.000000, 0.866025, 0.000000]
+    default_dofs_pos:
+      right_thumb_CMC_FE: 1.490000
+      right_thumb_CMC_AA: -0.190000
+      right_thumb_MCP_FE: 0.200000
+      right_thumb_MCP_AA: -0.020000
+      right_thumb_IP: 0.350000
+      right_index_MCP_FE: 0.860000
+      right_index_MCP_AA: 0.000000
+      right_index_PIP: 0.340000
+      right_index_DIP: 0.610000
+      right_middle_MCP_FE: 0.770000
+      right_middle_MCP_AA: 0.020000
+      right_middle_PIP: 0.680000
+      right_middle_DIP: 0.340000
+      right_ring_MCP_FE: 0.000000
+      right_ring_MCP_AA: 0.000000
+      right_ring_PIP: 0.000000
+      right_ring_DIP: 0.000000
+      right_pinky_CMC: 0.000000
+      right_pinky_MCP_FE: 0.000000
+      right_pinky_MCP_AA: 0.000000
+      right_pinky_PIP: 0.000000
+      right_pinky_DIP: 0.000000
+  obj:
+    default_root_pos: [0.000000, 0.000000, 0.0]
+    default_root_quat: [0.707107, 0.707107, 0.000000, 0.000000]

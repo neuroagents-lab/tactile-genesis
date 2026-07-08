@@ -1,0 +1,40 @@
+# Grasp sampling config for XHand1 + screwdriver task (right-hand, link2 runtime links).
+# Joint seed mapped from DexScrew screwdriver_inclined and adapted for right-hand XHand1.
+grasp_generation:
+  num_envs: 1024
+  num_grasps: 64
+  # Broaden joint exploration around the seed so sampler can escape
+  # the local penetrating basin.
+  perturb_range: 0.2
+  # Condition 1: require enough configured surface-distance sensors below threshold.
+  required_num_surface_distance_fingers: 3
+  surface_distance_threshold: 0.02
+  # Tighten penetration acceptance so retained grasps are cleaner.
+  max_penetration: 0.003
+  max_displacement: 0.01
+  # Keep the object near the seeded hand-relative pose while bootstrapping grasps.
+  obj_pos_shift: "-0.01,0.01,-0.01,0.01,0.0,0.0"
+  obj_euler_range: "0,0,0,0,-180,180"
+  bottom_aligned: true
+  output_file: src/assets/grasps/screwdrivers_xhand1_grasps_64.pt
+
+scene_options:
+  robot:
+    default_root_pos: [0.015, -0.055, 0.25]
+    default_root_quat: [0.405580, -0.579228, 0.579228, 0.405580]
+    default_dofs_pos:
+      right_hand_thumb_bend_joint: 1.440000
+      right_hand_index_bend_joint: 0.000000
+      right_hand_mid_joint1: 1.250000
+      right_hand_ring_joint1: 0.000000
+      right_hand_pinky_joint1: 0.000000
+      right_hand_thumb_rota_joint1: 0.340000
+      right_hand_index_joint1: 1.270000
+      right_hand_mid_joint2: 0.590000
+      right_hand_ring_joint2: 0.000000
+      right_hand_pinky_joint2: 0.000000
+      right_hand_thumb_rota_joint2: 0.500000
+      right_hand_index_joint2: 0.550000
+  obj:
+    default_root_pos: [0.000000, 0.000000, 0.0]
+    default_root_quat: [0.707107, 0.707107, 0.000000, 0.000000]

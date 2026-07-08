@@ -1,0 +1,162 @@
+# Tactile sensor construction kwargs, keyed by sensor type (see
+# TACTILE_SENSORS in src/tactile_sensors.py). Each block has two parts:
+#
+#   params:       base kwargs forwarded to the matching `gs.sensors` class.
+#   noise_params: extra kwargs layered on top of `params` when a sensor is
+#                 requested with a trailing `/noisy` flag (see
+#                 `TactileSensorsMod`). Empty (or missing) makes `/noisy` a
+#                 no-op for that sensor type.
+#
+# noise knobs come from `genesis/options/sensors/{options,tactile}.py`:
+#   noise                     - std of additive white noise (sensor output units)
+#   bias                      - constant additive offset
+#   random_walk               - std of slow bias drift
+#   resolution                - quantization step
+#   probe_radius_noise        - sensing-radius uncertainty (m)
+#   dead_taxel_probability    - per-reset Bernoulli chance a taxel goes dead
+#   probe_gain_resample_range - per-reset uniform multiplicative gain scatter
+#   hysteresis_strength / hysteresis_tau - viscoelastic loading/unloading loop
+#
+# Noise magnitudes are tuned to be plausible for low-cost tactile hardware --
+# enough to make a distilled student robust to the sim-to-real gap without
+# drowning the signal. Crosstalk (`crosstalk_strength`) is intentionally
+# omitted from contact-depth probes: it needs a regular-grid `probe_local_pos`
+# layout the flat probe configs do not have.
+#
+# Top-level keys starting with `_` are anchor holders, ignored by the loader.
+
+_anchors:
+  # Shared kinematic-taxel base params (force, force_torque).
+  kin_taxel: &kin_taxel
+    normal_stiffness: 500.0
+    normal_damping: 1.0
+    normal_exponent: 1.2
+    shear_scalar: 2.0
+    twist_scalar: 2.0
+    debug_probe_color: [0.4, 0.7, 1.0]
+    debug_contact_color: [1.0, 0.4, 0.4]
+
+  # Shared noise model for ContactDepthProbe-based sensors (depth, agg_force).
+  contact_depth_noise: &contact_depth_noise
+    noise: 2.0e-4                       # m, ~20 um white noise on contact depth
+    resolution: 1.0e-4                  # m, depth quantization step
+    probe_radius_noise: 3.0e-4          # m, sensing-radius uncertainty
+    dead_taxel_probability: 0.05
+    probe_gain_resample_range: [0.85, 1.15]   # per-reset calibration scatter
+    hysteresis_strength: 0.5            # viscoelastic loading/unloading loop
+    hysteresis_tau: 0.05                 # s, hysteresis relaxation time constant
+
+  # Shared noise model for KinematicTaxel-based sensors (force, force_torque).
+  kin_taxel_noise: &kin_taxel_noise
+    noise: 0.005                 # N, white-noise std
+    random_walk: 0.0001          # N, slow bias drift
+    resolution: 0.01
+    probe_radius_noise: 3.0e-4  # m, sensing-radius uncertainty
+    dead_taxel_probability: 0.05
+    probe_gain_resample_range: [0.85, 1.15]
+    # crosstalk_strength: 0.1
+    # crosstalk_sigma: 0.1
+    hysteresis_strength: 0.5
+    hysteresis_tau: 0.05
+
+# --- boolean contact -------------------------------------------------------
+# A thresholded bit, so the realistic imperfection is white noise near the
+# threshold (Contact) or intermittently dead taxels (ContactProbe).
+
+link_bool:
+  params: {}
+  noise_params:
+    noise: 0.03   # white-noise std on the pre-threshold contact magnitude
+
+bool:
+  params:
+    contact_threshold: 0.0005
+  noise_params:
+    release_threshold: 0.0002   # schmitt trigger hysteresis
+    dead_taxel_probability: 0.05   # per-reset Bernoulli chance a taxel goes dead
+
+# Same ContactProbe as `bool`; the postprocess collapses the per-link taxel
+# bits into a single bit (true iff > AGG_BOOL_TAXEL_COUNT_THRESHOLD taxels
+# read true).
+agg_bool:
+  params:
+    contact_threshold: 0.0005
+  noise_params:
+    release_threshold: 0.0002
+    dead_taxel_probability: 0.05
+
+# --- aggregate per-link contact force (ContactForce), in Newtons -----------
+link_force:
+  params:
+    min_force: 0.0001   # minimum detectable force
+    max_force: 10.0     # maximum force to clip at
+  noise_params:
+    noise: 0.08         # N, white-noise std per axis
+    random_walk: 0.01   # N, slow bias drift
+    resolution: 0.005   # N, ADC quantization step
+
+# --- per-probe contact depth (ContactDepthProbe), in meters ----------------
+# `agg_force` shares the depth noise model since it is a ContactDepthProbe
+# scaled inside the postprocess func.
+depth:
+  params: {}
+  noise_params: *contact_depth_noise
+
+agg_force:
+  params: {}
+  noise_params: *contact_depth_noise
+
+# --- per-probe force estimate (KinematicTaxel), in Newtons -----------------
+force:
+  params: *kin_taxel
+  noise_params: *kin_taxel_noise
+
+force_torque:
+  params: *kin_taxel
+  noise_params: *kin_taxel_noise
+
+# --- per-probe proximity force estimate (ProximityTaxel), in Newtons -------
+# R_eff is resampled every step when `probe_radius_noise` is non-zero.
+proximity:
+  params:
+    probe_radius: 0.01
+    n_sample_points: 1000
+    stiffness: 300.0
+    shear_coupling: 10.0
+    debug_point_cloud_radius: 0.001
+    debug_point_cloud_color: [1.0, 0.8, 0.0, 0.3]
+    debug_probe_color: [0.4, 0.7, 1.0]
+    debug_probe_sphere_opacity: 0.1
+    debug_contact_color: [1.0, 0.4, 0.4]
+  noise_params:
+    noise: 0.01
+    random_walk: 0.001
+    resolution: 0.01
+    probe_radius_noise: 6.0e-4   # m, per-step sensing-radius noise
+    dead_taxel_probability: 0.05
+    probe_gain_resample_range: [0.85, 1.15]
+    hysteresis_strength: 0.5
+    hysteresis_tau: 0.05
+
+# --- per-marker displacement (ElastomerTaxel), in meters -------------------
+elastomer:
+  params:
+    n_sample_points: 1000
+    lambda_d: 8000.0
+    lambda_s: 2000.0
+    dilate_scale: 100.0
+    shear_scale: 200.0
+    normal_exponent: 1.2
+    debug_point_cloud_radius: 0.001
+    debug_point_cloud_color: [1.0, 0.8, 0.0, 0.3]
+    debug_probe_color: [0.4, 0.7, 1.0]
+    debug_contact_color: [1.0, 0.4, 0.4]
+  noise_params:
+    noise: 0.0001                # m, white-noise std on marker displacement
+    random_walk: 0.00001
+    resolution: 0.0001
+    probe_radius_noise: 3.0e-4   # m, sensing-radius uncertainty
+    dead_taxel_probability: 0.05
+    probe_gain_resample_range: [0.85, 1.15]
+    hysteresis_strength: 0.5
+    hysteresis_tau: 0.05

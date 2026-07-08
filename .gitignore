@@ -1,0 +1,26 @@
+# macOS
+.DS_Store
+
+# Python bytecode / caches
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# Tooling caches
+.ruff_cache/
+.pytest_cache/
+.mypy_cache/
+
+# Environments
+.venv/
+.env
+
+# Editors
+.vscode/
+.idea/
+
+# Experiment outputs
+logs/
+runs/
+outputs/
+wandb/

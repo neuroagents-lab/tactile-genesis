@@ -1,0 +1,9 @@
+# Tiny smoke-test config: 4 envs, 10 iterations, TensorBoard logging (no W&B
+# login needed). Used by the README's local CPU smoke test:
+#   uv run python main.py --task=<task> --robot=<robot> --cpu --config=conf/experiments/tiny.yaml
+env_options:
+  num_envs: 4
+runner_options:
+  max_iterations: 10
+  num_steps_per_env: 24
+  logger: tensorboard

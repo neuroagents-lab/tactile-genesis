@@ -1,0 +1,19 @@
+{
+  "name": "xhand1-med",
+  "canvas_hw": [14, 20],
+  "sensors": [
+    {"link": "right_hand_thumb_rota_link2", "row": 0,  "col": 0,  "h": 5, "w": 4},
+    {"link": "right_hand_index_rota_link2", "row": 0,  "col": 4,  "h": 5, "w": 4},
+    {"link": "right_hand_mid_link2",        "row": 0,  "col": 8,  "h": 5, "w": 4},
+    {"link": "right_hand_ring_link2",       "row": 0,  "col": 12, "h": 5, "w": 4},
+    {"link": "right_hand_pinky_link2",      "row": 0,  "col": 16, "h": 5, "w": 4},
+
+    {"link": "right_hand_thumb_rota_link1", "row": 5,  "col": 0,  "h": 4, "w": 4},
+    {"link": "right_hand_index_rota_link1", "row": 5,  "col": 4,  "h": 4, "w": 3},
+    {"link": "right_hand_mid_link1",        "row": 5,  "col": 8,  "h": 4, "w": 3},
+    {"link": "right_hand_ring_link1",       "row": 5,  "col": 12, "h": 4, "w": 3},
+    {"link": "right_hand_pinky_link1",      "row": 5,  "col": 16, "h": 4, "w": 3},
+
+    {"link": "right_hand_link",             "row": 9,  "col": 6,  "h": 5, "w": 7}
+  ]
+}

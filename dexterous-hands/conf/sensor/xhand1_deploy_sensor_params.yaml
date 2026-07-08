@@ -1,0 +1,25 @@
+# Calibration parameters for the real xhand1 fingertip tactile sensors.
+#
+# `scale` multiplies the real fingertip force reading (`calc_pressure`, the
+# [fx, fy, fz] vector) during deployment so it matches the simulated
+# `agg_force` magnitude. The scaled value feeds both the policy observation
+# and the real-vs-sim recording/plot.
+#
+# Tune it: run `python main.py --mode deploy --robot xhand1 --sensors agg_force
+# ... --record_tactile`, compare the real vs sim traces, and adjust until they
+# line up. `per_finger` overrides `scale` for individual fingers
+# (thumb/index/mid/ring/pinky); omit a finger to use the global `scale`.
+
+scale: 1000.0
+per_finger: {
+  # thumb: 1000.0,
+  # index: 1000.0,
+  # mid: 1000.0,
+  # ring: 1000.0,
+  # pinky: 1000.0,
+}
+
+# Per-axis multiplier on `calc_pressure` [fx, fy, fz], applied together with
+# `scale`. The real xhand1 sensor reports fx and fy with the opposite sign to
+# sim, so flip them; fz keeps its sign.
+axis_scale: [-1.0, -1.0, 1.0]

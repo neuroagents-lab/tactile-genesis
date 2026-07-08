@@ -1,0 +1,1961 @@
+_meta:
+  eden_version: fce0b2442dbe4a57db4ded7d563d8c8c52c61a65
+  genesis_version: 7de648ba1a68b77cb24edc0874760a93142c14a9
+  _option_module_: tasks.screwdriver.config
+  _option_class_: ScrewdriverConfig
+config:
+  env_options:
+    num_envs: 8192
+    num_eval_envs: 16
+    sim_dt: 0.005
+    sim_substeps: 1
+    decimation: 5
+    requires_grad: false
+    episode_length_s: 20.0
+    use_gjk_collision: true
+    solver: newton
+    constraint_timeconst: null
+    max_collision_pairs: 50
+    multiplier_collision_broad_phase: 8
+    iterations: 50
+    tolerance: 1.0e-05
+    ls_iterations: 50
+    ls_tolerance: 0.01
+    enable_self_collision: true
+    batch_links_info: false
+    batch_joints_info: false
+    batch_dofs_info: true
+    enable_multi_contact: true
+    noslip_iterations: 0
+    use_hibernation: false
+    teleport_robots: false
+    env_separate_rigid: false
+    env_spacing:
+    - 0.5
+    - 0.5
+    center_envs_at_origin: false
+    show_link_frame: false
+    show_world_frame: false
+    show_camera_frustums: false
+    segmentation_level: entity
+    show_FPS: false
+    enable_default_keybinds: true
+    record_final_observations: false
+    coupler_options: null
+    fem_options: null
+    mpm_options: null
+    sph_options: null
+    _option_module_: eden.options.envs
+    _option_class_: EnvOptions
+  scene_options:
+    attachments_dict: {}
+    splat_options: null
+    plane:
+      material: null
+      surface: null
+      visualize_contact: false
+      vis_mode: visual
+      visualization: true
+      collision: true
+      contype: 65535
+      conaffinity: 65535
+      batch_fixed_verts: false
+      is_support_enabled: false
+      default_root_pos:
+      - 0.0
+      - 0.0
+      - 0.0
+      default_root_quat:
+      - 1.0
+      - 0.0
+      - 0.0
+      - 0.0
+      is_fixed_base: true
+      is_articulated: false
+      is_actuated: false
+      dofs_name: []
+      default_dofs_pos: {}
+      default_dofs_vel: {}
+      default_dofs_kp: {}
+      default_dofs_kd: {}
+      default_dofs_stiffness: {}
+      default_dofs_damping: {}
+      default_dofs_armature: {}
+      default_dofs_pos_limits: {}
+      soft_dofs_pos_limits: {}
+      default_dofs_force_limits: {}
+      fixed: true
+      normal:
+      - 0.0
+      - 0.0
+      - 1.0
+      plane_size:
+      - 1000.0
+      - 1000.0
+      tile_size:
+      - 1.0
+      - 1.0
+      _option_module_: eden.options.entities
+      _option_class_: PlaneOptions
+    obj:
+      material: null
+      surface:
+        ior: 1.0
+        default_roughness: 1.0
+        vis_mode: visual
+        smooth: true
+        double_sided: false
+        cutoff: 180.0
+        normal_diff_clamp: 180.0
+        recon_backend: splashsurf
+        generate_foam: false
+        foam_options:
+          radius_scale: 0.2
+          color:
+          - 0.7
+          - 0.7
+          - 0.7
+          - 0.7
+          spray_decay: 2.0
+          foam_decay: 1.0
+          bubble_decay: 5.0
+          k_foam: 1000.0
+          _option_module_: genesis.options.misc
+          _option_class_: FoamOptions
+        diffuse_texture:
+          color:
+          - 1.0
+          - 0.1
+          - 0.0
+          is_black: false
+          requires_uv: false
+          _option_module_: genesis.options.textures
+          _option_class_: ColorTexture
+        opacity_texture:
+          color:
+          - 1.0
+          is_black: false
+          requires_uv: false
+          _option_module_: genesis.options.textures
+          _option_class_: ColorTexture
+        roughness_texture: null
+        metallic_texture: null
+        normal_texture: null
+        emissive_texture: null
+        specular_trans: 0.0
+        diffuse_trans: 0.0
+        _option_module_: genesis.options.surfaces
+        _option_class_: Default
+      visualize_contact: false
+      vis_mode: visual
+      visualization: true
+      collision: true
+      contype: 65535
+      conaffinity: 65535
+      batch_fixed_verts: false
+      is_support_enabled: false
+      default_root_pos:
+      - 0.0
+      - 0.0
+      - 0.0
+      default_root_quat:
+      - 0.7071067811865476
+      - 0.7071067811865475
+      - 0.0
+      - 0.0
+      is_fixed_base: false
+      is_articulated: false
+      is_actuated: false
+      dofs_name: []
+      default_dofs_pos: {}
+      default_dofs_vel: {}
+      default_dofs_kp: {}
+      default_dofs_kd: {}
+      default_dofs_stiffness: {}
+      default_dofs_damping: {}
+      default_dofs_armature: {}
+      default_dofs_pos_limits: {}
+      soft_dofs_pos_limits: {}
+      default_dofs_force_limits: {}
+      grouped_entities:
+      - material:
+          rho: 4000.0
+          friction: 1.0
+          needs_coup: true
+          coup_friction: 0.1
+          coup_softness: 0.002
+          coup_restitution: 0.0
+          sdf_cell_size: 0.005
+          sdf_min_res: 32
+          sdf_max_res: 128
+          gravity_compensation: 0.0
+          coup_type: null
+          coup_links: null
+          enable_coup_collision: true
+          coup_collision_links: null
+          contact_resistance: null
+          _option_module_: eden.options.materials
+          _option_class_: RigidMaterialOptions
+        surface: null
+        visualize_contact: false
+        vis_mode: visual
+        visualization: true
+        collision: true
+        contype: 65535
+        conaffinity: 65535
+        batch_fixed_verts: false
+        is_support_enabled: false
+        default_root_pos:
+        - 0.0
+        - 0.0
+        - 0.0
+        default_root_quat:
+        - 1.0
+        - 0.0
+        - 0.0
+        - 0.0
+        is_fixed_base: false
+        is_articulated: false
+        is_actuated: false
+        dofs_name: []
+        default_dofs_pos: {}
+        default_dofs_vel: {}
+        default_dofs_kp: {}
+        default_dofs_kd: {}
+        default_dofs_stiffness: {}
+        default_dofs_damping: {}
+        default_dofs_armature: {}
+        default_dofs_pos_limits: {}
+        soft_dofs_pos_limits: {}
+        default_dofs_force_limits: {}
+        up:
+        - 0
+        - 0
+        - 1
+        front:
+        - 1
+        - 0
+        - 0
+        file: src/assets/screwdriver/screwdriver0_fat.obj
+        registry: Kashu7100
+        dataset: eden_assets
+        local_dir: null
+        scale: 0.2032
+        decimate: true
+        decimate_face_num: 1000
+        decimate_aggressiveness: 3
+        convexify: true
+        decompose_object_error_threshold: 0.15
+        decompose_robot_error_threshold: .inf
+        coacd_threshold: 0.05
+        coacd_preprocess_resolution: 100
+        links_to_keep: []
+        default_armature: 0.1
+        support_sample_method: uniform
+        support_minimum_clearance: 0.05
+        support_shrink: 0.1
+        support_num_sample_points: 300
+        support_grid_size: 0.01
+        support_links_name: []
+        forward_vec:
+        - 1
+        - 0
+        - 0
+        recompute_inertia: true
+        _option_module_: entities.screwdrivers
+        _option_class_: ScrewdriverObj
+      - material:
+          rho: 4000.0
+          friction: 1.0
+          needs_coup: true
+          coup_friction: 0.1
+          coup_softness: 0.002
+          coup_restitution: 0.0
+          sdf_cell_size: 0.005
+          sdf_min_res: 32
+          sdf_max_res: 128
+          gravity_compensation: 0.0
+          coup_type: null
+          coup_links: null
+          enable_coup_collision: true
+          coup_collision_links: null
+          contact_resistance: null
+          _option_module_: eden.options.materials
+          _option_class_: RigidMaterialOptions
+        surface: null
+        visualize_contact: false
+        vis_mode: visual
+        visualization: true
+        collision: true
+        contype: 65535
+        conaffinity: 65535
+        batch_fixed_verts: false
+        is_support_enabled: false
+        default_root_pos:
+        - 0.0
+        - 0.0
+        - 0.0
+        default_root_quat:
+        - 1.0
+        - 0.0
+        - 0.0
+        - 0.0
+        is_fixed_base: false
+        is_articulated: false
+        is_actuated: false
+        dofs_name: []
+        default_dofs_pos: {}
+        default_dofs_vel: {}
+        default_dofs_kp: {}
+        default_dofs_kd: {}
+        default_dofs_stiffness: {}
+        default_dofs_damping: {}
+        default_dofs_armature: {}
+        default_dofs_pos_limits: {}
+        soft_dofs_pos_limits: {}
+        default_dofs_force_limits: {}
+        up:
+        - 0
+        - 0
+        - 1
+        front:
+        - 1
+        - 0
+        - 0
+        file: src/assets/screwdriver/screwdriver1_fat.obj
+        registry: Kashu7100
+        dataset: eden_assets
+        local_dir: null
+        scale: 0.2032
+        decimate: true
+        decimate_face_num: 1000
+        decimate_aggressiveness: 3
+        convexify: true
+        decompose_object_error_threshold: 0.15
+        decompose_robot_error_threshold: .inf
+        coacd_threshold: 0.05
+        coacd_preprocess_resolution: 100
+        links_to_keep: []
+        default_armature: 0.1
+        support_sample_method: uniform
+        support_minimum_clearance: 0.05
+        support_shrink: 0.1
+        support_num_sample_points: 300
+        support_grid_size: 0.01
+        support_links_name: []
+        forward_vec:
+        - 1
+        - 0
+        - 0
+        recompute_inertia: true
+        _option_module_: entities.screwdrivers
+        _option_class_: ScrewdriverObj
+      - material:
+          rho: 4000.0
+          friction: 1.0
+          needs_coup: true
+          coup_friction: 0.1
+          coup_softness: 0.002
+          coup_restitution: 0.0
+          sdf_cell_size: 0.005
+          sdf_min_res: 32
+          sdf_max_res: 128
+          gravity_compensation: 0.0
+          coup_type: null
+          coup_links: null
+          enable_coup_collision: true
+          coup_collision_links: null
+          contact_resistance: null
+          _option_module_: eden.options.materials
+          _option_class_: RigidMaterialOptions
+        surface: null
+        visualize_contact: false
+        vis_mode: visual
+        visualization: true
+        collision: true
+        contype: 65535
+        conaffinity: 65535
+        batch_fixed_verts: false
+        is_support_enabled: false
+        default_root_pos:
+        - 0.0
+        - 0.0
+        - 0.0
+        default_root_quat:
+        - 1.0
+        - 0.0
+        - 0.0
+        - 0.0
+        is_fixed_base: false
+        is_articulated: false
+        is_actuated: false
+        dofs_name: []
+        default_dofs_pos: {}
+        default_dofs_vel: {}
+        default_dofs_kp: {}
+        default_dofs_kd: {}
+        default_dofs_stiffness: {}
+        default_dofs_damping: {}
+        default_dofs_armature: {}
+        default_dofs_pos_limits: {}
+        soft_dofs_pos_limits: {}
+        default_dofs_force_limits: {}
+        up:
+        - 0
+        - 0
+        - 1
+        front:
+        - 1
+        - 0
+        - 0
+        file: src/assets/screwdriver/screwdriver2_fat.obj
+        registry: Kashu7100
+        dataset: eden_assets
+        local_dir: null
+        scale: 0.2032
+        decimate: true
+        decimate_face_num: 1000
+        decimate_aggressiveness: 3
+        convexify: true
+        decompose_object_error_threshold: 0.15
+        decompose_robot_error_threshold: .inf
+        coacd_threshold: 0.05
+        coacd_preprocess_resolution: 100
+        links_to_keep: []
+        default_armature: 0.1
+        support_sample_method: uniform
+        support_minimum_clearance: 0.05
+        support_shrink: 0.1
+        support_num_sample_points: 300
+        support_grid_size: 0.01
+        support_links_name: []
+        forward_vec:
+        - 1
+        - 0
+        - 0
+        recompute_inertia: true
+        _option_module_: entities.screwdrivers
+        _option_class_: ScrewdriverObj
+      - material:
+          rho: 4000.0
+          friction: 1.0
+          needs_coup: true
+          coup_friction: 0.1
+          coup_softness: 0.002
+          coup_restitution: 0.0
+          sdf_cell_size: 0.005
+          sdf_min_res: 32
+          sdf_max_res: 128
+          gravity_compensation: 0.0
+          coup_type: null
+          coup_links: null
+          enable_coup_collision: true
+          coup_collision_links: null
+          contact_resistance: null
+          _option_module_: eden.options.materials
+          _option_class_: RigidMaterialOptions
+        surface: null
+        visualize_contact: false
+        vis_mode: visual
+        visualization: true
+        collision: true
+        contype: 65535
+        conaffinity: 65535
+        batch_fixed_verts: false
+        is_support_enabled: false
+        default_root_pos:
+        - 0.0
+        - 0.0
+        - 0.0
+        default_root_quat:
+        - 1.0
+        - 0.0
+        - 0.0
+        - 0.0
+        is_fixed_base: false
+        is_articulated: false
+        is_actuated: false
+        dofs_name: []
+        default_dofs_pos: {}
+        default_dofs_vel: {}
+        default_dofs_kp: {}
+        default_dofs_kd: {}
+        default_dofs_stiffness: {}
+        default_dofs_damping: {}
+        default_dofs_armature: {}
+        default_dofs_pos_limits: {}
+        soft_dofs_pos_limits: {}
+        default_dofs_force_limits: {}
+        up:
+        - 0
+        - 0
+        - 1
+        front:
+        - 1
+        - 0
+        - 0
+        file: src/assets/screwdriver/screwdriver3_fat.obj
+        registry: Kashu7100
+        dataset: eden_assets
+        local_dir: null
+        scale: 0.2032
+        decimate: true
+        decimate_face_num: 1000
+        decimate_aggressiveness: 3
+        convexify: true
+        decompose_object_error_threshold: 0.15
+        decompose_robot_error_threshold: .inf
+        coacd_threshold: 0.05
+        coacd_preprocess_resolution: 100
+        links_to_keep: []
+        default_armature: 0.1
+        support_sample_method: uniform
+        support_minimum_clearance: 0.05
+        support_shrink: 0.1
+        support_num_sample_points: 300
+        support_grid_size: 0.01
+        support_links_name: []
+        forward_vec:
+        - 1
+        - 0
+        - 0
+        recompute_inertia: true
+        _option_module_: entities.screwdrivers
+        _option_class_: ScrewdriverObj
+      _option_module_: entities.screwdrivers
+      _option_class_: FatScrewdrivers
+    _option_module_: eden.options.entities
+    _option_class_: SceneOptions
+    robot:
+      material:
+        rho: 200.0
+        friction: null
+        needs_coup: true
+        coup_friction: 0.1
+        coup_softness: 0.002
+        coup_restitution: 0.0
+        sdf_cell_size: 0.005
+        sdf_min_res: 32
+        sdf_max_res: 128
+        gravity_compensation: 0.0
+        coup_type: null
+        coup_links: null
+        enable_coup_collision: true
+        coup_collision_links: null
+        contact_resistance: null
+        _option_module_: eden.options.materials
+        _option_class_: RigidMaterialOptions
+      surface:
+        ior: null
+        default_roughness: 0.12
+        vis_mode: visual
+        smooth: true
+        double_sided: false
+        cutoff: 180.0
+        normal_diff_clamp: 180.0
+        recon_backend: splashsurf
+        generate_foam: false
+        foam_options:
+          radius_scale: 0.2
+          color:
+          - 0.7
+          - 0.7
+          - 0.7
+          - 0.7
+          spray_decay: 2.0
+          foam_decay: 1.0
+          bubble_decay: 5.0
+          k_foam: 1000.0
+          _option_module_: genesis.options.misc
+          _option_class_: FoamOptions
+        metal_type: iron
+        diffuse_texture:
+          color:
+          - 0.82
+          - 0.84
+          - 0.86
+          is_black: false
+          requires_uv: false
+          _option_module_: genesis.options.textures
+          _option_class_: ColorTexture
+        opacity_texture:
+          color:
+          - 1.0
+          is_black: false
+          requires_uv: false
+          _option_module_: genesis.options.textures
+          _option_class_: ColorTexture
+        roughness_texture:
+          color:
+          - 0.12
+          is_black: false
+          requires_uv: false
+          _option_module_: genesis.options.textures
+          _option_class_: ColorTexture
+        normal_texture: null
+        emissive_texture: null
+        _option_module_: genesis.options.surfaces
+        _option_class_: Metal
+      visualize_contact: false
+      vis_mode: visual
+      visualization: true
+      collision: true
+      contype: 65535
+      conaffinity: 65535
+      batch_fixed_verts: true
+      is_support_enabled: false
+      default_root_pos:
+      - 0.0
+      - 0.0
+      - 0.0
+      default_root_quat:
+      - 1.0
+      - 0.0
+      - 0.0
+      - 0.0
+      is_fixed_base: true
+      is_articulated: true
+      is_actuated: true
+      dofs_name:
+      - right_thumb_CMC_FE
+      - right_thumb_CMC_AA
+      - right_thumb_MCP_FE
+      - right_thumb_MCP_AA
+      - right_thumb_IP
+      - right_index_MCP_FE
+      - right_index_MCP_AA
+      - right_index_PIP
+      - right_index_DIP
+      - right_middle_MCP_FE
+      - right_middle_MCP_AA
+      - right_middle_PIP
+      - right_middle_DIP
+      - right_ring_MCP_FE
+      - right_ring_MCP_AA
+      - right_ring_PIP
+      - right_ring_DIP
+      - right_pinky_CMC
+      - right_pinky_MCP_FE
+      - right_pinky_MCP_AA
+      - right_pinky_PIP
+      - right_pinky_DIP
+      default_dofs_pos:
+        right_thumb_CMC_FE: 0.0
+        right_thumb_CMC_AA: 0.0
+        right_thumb_MCP_FE: 0.0
+        right_thumb_MCP_AA: 0.0
+        right_thumb_IP: 0.0
+        right_index_MCP_FE: 0.0
+        right_index_MCP_AA: 0.0
+        right_index_PIP: 0.0
+        right_index_DIP: 0.0
+        right_middle_MCP_FE: 0.0
+        right_middle_MCP_AA: 0.0
+        right_middle_PIP: 0.0
+        right_middle_DIP: 0.0
+        right_ring_MCP_FE: 0.0
+        right_ring_MCP_AA: 0.0
+        right_ring_PIP: 0.0
+        right_ring_DIP: 0.0
+        right_pinky_CMC: 0.0
+        right_pinky_MCP_FE: 0.0
+        right_pinky_MCP_AA: 0.0
+        right_pinky_PIP: 0.0
+        right_pinky_DIP: 0.0
+      default_dofs_vel: {}
+      default_dofs_kp: {}
+      default_dofs_kd: {}
+      default_dofs_stiffness: {}
+      default_dofs_damping: {}
+      default_dofs_armature: {}
+      default_dofs_pos_limits: {}
+      soft_dofs_pos_limits: {}
+      default_dofs_force_limits: {}
+      up:
+      - 0
+      - 0
+      - 1
+      front:
+      - 1
+      - 0
+      - 0
+      file: src/assets/hands/sharpa/sharpa_right_updated_effort.urdf
+      registry: Kashu7100
+      dataset: eden_assets
+      local_dir: null
+      scale: 1.0
+      decimate: true
+      decimate_face_num: 1000
+      decimate_aggressiveness: 3
+      convexify: true
+      decompose_object_error_threshold: 0.15
+      decompose_robot_error_threshold: .inf
+      coacd_threshold: 0.05
+      coacd_preprocess_resolution: 100
+      links_to_keep: []
+      default_armature: 0.1
+      support_sample_method: uniform
+      support_minimum_clearance: 0.05
+      support_shrink: 0.1
+      support_num_sample_points: 300
+      support_grid_size: 0.01
+      support_links_name: []
+      forward_vec:
+      - 1
+      - 0
+      - 0
+      _option_module_: entities.robots.sharpa_hand
+      _option_class_: SharpaHand
+  observation_options:
+    proprio:
+      concatenate_terms: true
+      concatenate_dim: -1
+      terms_order: null
+      enable_corruption: true
+      history_length: null
+      flatten_history_dim: true
+      backfill: true
+      dofs_pos:
+        noise:
+          operation: add
+          name: gaussian_noise
+          std: 0.001
+          mean: 0.0
+          _option_module_: eden.options.managers.modifiers
+          _option_class_: NoiseOptions
+        clip: null
+        scale: 1.0
+        history_length: 0
+        flatten_history_dim: false
+        backfill: true
+        name: dofs_pos
+        params:
+          entity_name: robot
+          offset_from_default: false
+        _option_module_: eden.options.managers.observations
+        _option_class_: ObservationTermOptions
+      dofs_vel:
+        noise:
+          operation: add
+          name: gaussian_noise
+          std: 0.001
+          mean: 0.0
+          _option_module_: eden.options.managers.modifiers
+          _option_class_: NoiseOptions
+        clip: null
+        scale: 0.2
+        history_length: 0
+        flatten_history_dim: false
+        backfill: true
+        name: dofs_vel
+        params:
+          entity_name: robot
+        _option_module_: eden.options.managers.observations
+        _option_class_: ObservationTermOptions
+      last_action:
+        noise: null
+        clip: null
+        scale: 1.0
+        history_length: 0
+        flatten_history_dim: false
+        backfill: true
+        name: last_action
+        params: {}
+        _option_module_: eden.options.managers.observations
+        _option_class_: ObservationTermOptions
+      _option_module_: eden.options.managers.observations
+      _option_class_: ObservationGroupOptions
+    priv_proprio:
+      concatenate_terms: true
+      concatenate_dim: -1
+      terms_order: null
+      enable_corruption: true
+      history_length: null
+      flatten_history_dim: true
+      backfill: true
+      dofs_pos:
+        noise: null
+        clip: null
+        scale: 1.0
+        history_length: 0
+        flatten_history_dim: false
+        backfill: true
+        name: dofs_pos
+        params:
+          entity_name: robot
+          offset_from_default: false
+        _option_module_: eden.options.managers.observations
+        _option_class_: ObservationTermOptions
+      dofs_vel:
+        noise: null
+        clip: null
+        scale: 0.2
+        history_length: 0
+        flatten_history_dim: false
+        backfill: true
+        name: dofs_vel
+        params:
+          entity_name: robot
+        _option_module_: eden.options.managers.observations
+        _option_class_: ObservationTermOptions
+      last_action:
+        noise: null
+        clip: null
+        scale: 1.0
+        history_length: 0
+        flatten_history_dim: false
+        backfill: true
+        name: last_action
+        params: {}
+        _option_module_: eden.options.managers.observations
+        _option_class_: ObservationTermOptions
+      contact:
+        noise: null
+        clip: null
+        scale: 1.0
+        history_length: 0
+        flatten_history_dim: false
+        backfill: true
+        name: sensor_read
+        sensor_names:
+        - priv_contact_*
+        read_ground_truth: false
+        post_process_func: null
+        _option_module_: eden.options.managers.observations
+        _option_class_: ObservationTermOptions
+      _option_module_: eden.options.managers.observations
+      _option_class_: ObservationGroupOptions
+    priv_obj_state:
+      concatenate_terms: true
+      concatenate_dim: -1
+      terms_order: null
+      enable_corruption: true
+      history_length: null
+      flatten_history_dim: true
+      backfill: true
+      obj_pos:
+        noise: null
+        clip: null
+        scale: 1.0
+        history_length: 0
+        flatten_history_dim: false
+        backfill: true
+        name: base_pos
+        params:
+          entity_name: obj
+        _option_module_: eden.options.managers.observations
+        _option_class_: ObservationTermOptions
+      obj_rot6d:
+        noise: null
+        clip: null
+        scale: 1.0
+        history_length: 0
+        flatten_history_dim: false
+        backfill: true
+        name: base_rot6d
+        params:
+          entity_name: obj
+        _option_module_: eden.options.managers.observations
+        _option_class_: ObservationTermOptions
+      obj_lin_vel:
+        noise: null
+        clip: null
+        scale: 1.0
+        history_length: 0
+        flatten_history_dim: false
+        backfill: true
+        name: base_lin_vel
+        params:
+          entity_name: obj
+        _option_module_: eden.options.managers.observations
+        _option_class_: ObservationTermOptions
+      obj_ang_vel:
+        noise: null
+        clip: null
+        scale: 0.2
+        history_length: 0
+        flatten_history_dim: false
+        backfill: true
+        name: base_ang_vel
+        params:
+          entity_name: obj
+        _option_module_: eden.options.managers.observations
+        _option_class_: ObservationTermOptions
+      surface_distance:
+        noise: null
+        clip: null
+        scale: 1.0
+        history_length: 0
+        flatten_history_dim: false
+        backfill: true
+        name: sensor_read
+        sensor_names:
+        - priv_surface_distance_*
+        read_ground_truth: false
+        post_process_func: null
+        _option_module_: eden.options.managers.observations
+        _option_class_: ObservationTermOptions
+      _option_module_: eden.options.managers.observations
+      _option_class_: ObservationGroupOptions
+    aux_obj_tilt:
+      concatenate_terms: true
+      concatenate_dim: -1
+      terms_order: null
+      enable_corruption: false
+      history_length: null
+      flatten_history_dim: true
+      backfill: true
+      obj_tilt:
+        noise: null
+        clip: null
+        scale: 1.0
+        history_length: 0
+        flatten_history_dim: false
+        backfill: true
+        name: screw_obj_tilt_obs
+        obj_name: obj
+        local_up_axis:
+        - 0.0
+        - 1.0
+        - 0.0
+        world_up_axis:
+        - 0.0
+        - 0.0
+        - 1.0
+        link_name: null
+        _option_module_: eden.options.managers.observations
+        _option_class_: ObservationTermOptions
+      _option_module_: eden.options.managers.observations
+      _option_class_: ObservationGroupOptions
+    aux_rotation_progress:
+      concatenate_terms: true
+      concatenate_dim: -1
+      terms_order: null
+      enable_corruption: false
+      history_length: null
+      flatten_history_dim: true
+      backfill: true
+      rotation_progress:
+        noise: null
+        clip: null
+        scale: 1.0
+        history_length: 0
+        flatten_history_dim: false
+        backfill: true
+        name: screw_axis_rotation_progress_obs
+        obj_name: obj
+        local_axis:
+        - 0.0
+        - -1.0
+        - 0.0
+        _option_module_: eden.options.managers.observations
+        _option_class_: ObservationTermOptions
+      _option_module_: eden.options.managers.observations
+      _option_class_: ObservationGroupOptions
+    _option_module_: eden.options.managers.observations
+    _option_class_: ObservationManagerOptions
+  action_options:
+    dofs_pos_controller:
+      entity_name: robot
+      dofs_name:
+      - right_thumb_CMC_FE
+      - right_thumb_CMC_AA
+      - right_thumb_MCP_FE
+      - right_thumb_MCP_AA
+      - right_thumb_IP
+      - right_index_MCP_FE
+      - right_index_MCP_AA
+      - right_index_PIP
+      - right_index_DIP
+      - right_middle_MCP_FE
+      - right_middle_MCP_AA
+      - right_middle_PIP
+      - right_middle_DIP
+      name: partial_frozen_explicit_pd_controller
+      frozen_dofs:
+      - right_ring_MCP_FE
+      - right_ring_MCP_AA
+      - right_ring_PIP
+      - right_ring_DIP
+      - right_pinky_CMC
+      - right_pinky_MCP_FE
+      - right_pinky_MCP_AA
+      - right_pinky_PIP
+      - right_pinky_DIP
+      scale: 1.0
+      scale_ratio: 0.5
+      offset: 0.0
+      modifier:
+        name: compose
+        modifiers:
+        - name: constant_torque_kick
+          activation_epsilon: 0.0
+          direction_source: pos_err
+          torque_kick: 0.0
+          _option_module_: eden.options.managers.modifiers
+          _option_class_: ActionModifierOptions
+        - name: motor_strength
+          motor_strength: 1.0
+          _option_module_: eden.options.managers.modifiers
+          _option_class_: ActionModifierOptions
+        - name: torque_offset
+          torque_offset: 0.0
+          _option_module_: eden.options.managers.modifiers
+          _option_class_: ActionModifierOptions
+        - name: gear_backlash
+          reversal_threshold: 0.0
+          backlash: 0.0
+          takeup_rate: 1.0
+          initial_side: 0.0
+          _option_module_: eden.options.managers.modifiers
+          _option_class_: ActionModifierOptions
+        - name: deadband
+          deadband_epsilon: 0.0
+          _option_module_: eden.options.managers.modifiers
+          _option_class_: ActionModifierOptions
+        _option_module_: eden.options.managers.modifiers
+        _option_class_: ActionModifierOptions
+      reference_source: default
+      _option_module_: eden.options.managers.actions
+      _option_class_: ActionTermOptions
+    _option_module_: eden.options.managers.actions
+    _option_class_: ActionManagerOptions
+  event_options:
+    load_grasp:
+      mode: reset
+      interval_range_s: null
+      is_global_time: false
+      min_step_count_between_reset: 0
+      priority: 0
+      name: load_grasp_pose
+      obj_name: obj
+      grasps_paths:
+        xhand1: src/assets/grasps/screwdrivers_xhand1_grasps_64.pt
+        sharpa: src/assets/grasps/screwdrivers_sharpa_grasps_64.pt
+      action_term_name: dofs_pos_controller
+      entity_name: robot
+      _option_module_: eden.options.managers.events
+      _option_class_: EventTermOptions
+    obj_friction:
+      mode: reset
+      interval_range_s: null
+      is_global_time: false
+      min_step_count_between_reset: 0
+      priority: 0
+      name: randomize_friction_ratio
+      friction_range:
+      - 0.2
+      - 1.2
+      links_name: '*'
+      entity_name: obj
+      _option_module_: eden.options.managers.events
+      _option_class_: EventTermOptions
+    handle_mass:
+      mode: reset
+      interval_range_s: null
+      is_global_time: false
+      min_step_count_between_reset: 0
+      priority: 0
+      name: randomize_mass_shift
+      mass_shift_range:
+      - 0.0
+      - 0.2
+      links_name: '*'
+      entity_name: obj
+      _option_module_: eden.options.managers.events
+      _option_class_: EventTermOptions
+    ext_force:
+      mode: interval
+      interval_range_s:
+      - 2.0
+      - 4.0
+      is_global_time: false
+      min_step_count_between_reset: 0
+      priority: 0
+      name: apply_external_force
+      prob: 1.0
+      force_z_range:
+      - -5.0
+      - 0.0
+      local: false
+      force_x_range:
+      - -5.0
+      - 5.0
+      ref: link_origin
+      links_name: '*'
+      entity_name: obj
+      force_y_range:
+      - -5.0
+      - 5.0
+      _option_module_: eden.options.managers.events
+      _option_class_: EventTermOptions
+    dofs_randomize_bias:
+      mode: reset
+      interval_range_s: null
+      is_global_time: false
+      min_step_count_between_reset: 0
+      priority: 0
+      name: randomize_startup_dofs_pos_bias
+      entity_name: robot
+      action_terms_name:
+      - dofs_pos_controller
+      dofs_pos_range:
+      - -0.01
+      - 0.01
+      _option_module_: eden.options.managers.events
+      _option_class_: EventTermOptions
+    pd_gains:
+      mode: reset
+      interval_range_s: null
+      is_global_time: false
+      min_step_count_between_reset: 0
+      priority: 0
+      name: randomize_kp_kd_gains
+      kd_range:
+      - 0.95
+      - 1.05
+      kp_range:
+      - 0.95
+      - 1.05
+      action_term_name: null
+      entity_name: robot
+      _option_module_: eden.options.managers.events
+      _option_class_: EventTermOptions
+    motor_strength:
+      mode: reset
+      interval_range_s: null
+      is_global_time: false
+      min_step_count_between_reset: 0
+      priority: 0
+      name: randomize_motor_strength
+      action_term_name: dofs_pos_controller
+      entity_name: robot
+      motor_strength_range:
+      - 0.95
+      - 1.05
+      _option_module_: eden.options.managers.events
+      _option_class_: EventTermOptions
+    deadband:
+      mode: reset
+      interval_range_s: null
+      is_global_time: false
+      min_step_count_between_reset: 0
+      priority: 0
+      name: randomize_deadband_epsilon
+      apply_as_ratio: false
+      deadband_epsilon_range:
+      - 0.0
+      - 0.005
+      action_term_name: dofs_pos_controller
+      entity_name: robot
+      _option_module_: eden.options.managers.events
+      _option_class_: EventTermOptions
+    kick:
+      mode: reset
+      interval_range_s: null
+      is_global_time: false
+      min_step_count_between_reset: 0
+      priority: 0
+      name: randomize_constant_torque_kick
+      apply_as_ratio: true
+      torque_kick_range:
+      - 0.9
+      - 1.1
+      action_term_name: dofs_pos_controller
+      entity_name: robot
+      _option_module_: eden.options.managers.events
+      _option_class_: EventTermOptions
+    backlash:
+      mode: reset
+      interval_range_s: null
+      is_global_time: false
+      min_step_count_between_reset: 0
+      priority: 0
+      name: randomize_gear_backlash
+      apply_as_ratio: false
+      action_term_name: dofs_pos_controller
+      entity_name: robot
+      backlash_range:
+      - 0.0
+      - 0.01
+      _option_module_: eden.options.managers.events
+      _option_class_: EventTermOptions
+    torque_noise:
+      mode: interval
+      interval_range_s:
+      - 0.005
+      - 0.005
+      is_global_time: false
+      min_step_count_between_reset: 0
+      priority: 0
+      name: randomize_torque_noise
+      rfi_scale: 0.1
+      action_term_name: dofs_pos_controller
+      _option_module_: eden.options.managers.events
+      _option_class_: EventTermOptions
+    _option_module_: eden.options.managers.events
+    _option_class_: EventManagerOptions
+  cameras_options:
+    rec:
+      model: pinhole
+      cam_pos:
+      - -0.780822
+      - -0.083966
+      - 0.697496
+      cam_lookat:
+      - 1.918845
+      - 1.435871
+      - 0.0
+      cam_resolution:
+      - 720
+      - 480
+      cam_up:
+      - 0.0
+      - 0.0
+      - 1.0
+      cam_intrinsic: null
+      cam_extrinsic: null
+      cam_aperture: 2.0
+      cam_fov: 60.0
+      debug: false
+      follow_entity_name: ''
+      attach_entity_name: ''
+      attach_link_name: ''
+      attach_offset: null
+      attach_quat: null
+      background_image_path: null
+      background_entities: []
+      sensor_options: null
+      _option_module_: eden.options.camera
+      _option_class_: CameraOptions
+    _option_module_: eden.options.camera
+    _option_class_: CamerasOptions
+  sensors_options:
+    _option_module_: eden.options.sensors
+    _option_class_: SensorsOptions
+    priv_surface_distance_right_index_DP:
+      sensor:
+        history_length: 0
+        delay: 0.0
+        jitter: 0.0
+        draw_debug: false
+        entity_idx: 2
+        probe_local_pos:
+        - - 0.018
+          - 0.005
+          - 0.0001
+        probe_radius: 0.5
+        probe_radius_noise: 0.0
+        debug_probe_color:
+        - 0.2
+        - 0.4
+        - 1.0
+        debug_probe_center_radius: 0.0008
+        debug_probe_sphere_opacity: 0.3
+        resolution: 0.0
+        bias: 0.0
+        noise: 0.0
+        random_walk: 0.0
+        link_idx_local: 17
+        pos_offset:
+        - 0.0
+        - 0.0
+        - 0.0
+        euler_offset:
+        - 0.0
+        - 0.0
+        - 0.0
+        track_link_idx:
+        - 1
+        _option_module_: genesis.options.sensors.options
+        _option_class_: SurfaceDistanceProbe
+      attach_entity_name: robot
+      attach_link_name: right_index_DP
+      track_link_names:
+      - obj
+      _option_module_: eden.options.sensors
+      _option_class_: SensorOptions
+    priv_contact_right_index_DP:
+      sensor:
+        history_length: 0
+        delay: 0.0
+        jitter: 0.0
+        draw_debug: false
+        entity_idx: 2
+        resolution:
+        - 0.0
+        - 0.0
+        - 0.0
+        bias: 0.0
+        noise: 0.0
+        random_walk: 0.0
+        link_idx_local: 17
+        pos_offset:
+        - 0.0
+        - 0.0
+        - 0.0
+        euler_offset:
+        - 0.0
+        - 0.0
+        - 0.0
+        min_force:
+        - 0.0
+        - 0.0
+        - 0.0
+        max_force:
+        - 10.0
+        - 10.0
+        - 10.0
+        debug_color:
+        - 1.0
+        - 0.0
+        - 1.0
+        - 0.5
+        debug_scale: 0.01
+        _option_module_: genesis.options.sensors.options
+        _option_class_: ContactForce
+      attach_entity_name: robot
+      attach_link_name: right_index_DP
+      track_link_names: []
+      _option_module_: eden.options.sensors
+      _option_class_: SensorOptions
+    priv_surface_distance_right_middle_DP:
+      sensor:
+        history_length: 0
+        delay: 0.0
+        jitter: 0.0
+        draw_debug: false
+        entity_idx: 2
+        probe_local_pos:
+        - - 0.018
+          - 0.005
+          - 0.0001
+        probe_radius: 0.5
+        probe_radius_noise: 0.0
+        debug_probe_color:
+        - 0.2
+        - 0.4
+        - 1.0
+        debug_probe_center_radius: 0.0008
+        debug_probe_sphere_opacity: 0.3
+        resolution: 0.0
+        bias: 0.0
+        noise: 0.0
+        random_walk: 0.0
+        link_idx_local: 18
+        pos_offset:
+        - 0.0
+        - 0.0
+        - 0.0
+        euler_offset:
+        - 0.0
+        - 0.0
+        - 0.0
+        track_link_idx:
+        - 1
+        _option_module_: genesis.options.sensors.options
+        _option_class_: SurfaceDistanceProbe
+      attach_entity_name: robot
+      attach_link_name: right_middle_DP
+      track_link_names:
+      - obj
+      _option_module_: eden.options.sensors
+      _option_class_: SensorOptions
+    priv_contact_right_middle_DP:
+      sensor:
+        history_length: 0
+        delay: 0.0
+        jitter: 0.0
+        draw_debug: false
+        entity_idx: 2
+        resolution:
+        - 0.0
+        - 0.0
+        - 0.0
+        bias: 0.0
+        noise: 0.0
+        random_walk: 0.0
+        link_idx_local: 18
+        pos_offset:
+        - 0.0
+        - 0.0
+        - 0.0
+        euler_offset:
+        - 0.0
+        - 0.0
+        - 0.0
+        min_force:
+        - 0.0
+        - 0.0
+        - 0.0
+        max_force:
+        - 10.0
+        - 10.0
+        - 10.0
+        debug_color:
+        - 1.0
+        - 0.0
+        - 1.0
+        - 0.5
+        debug_scale: 0.01
+        _option_module_: genesis.options.sensors.options
+        _option_class_: ContactForce
+      attach_entity_name: robot
+      attach_link_name: right_middle_DP
+      track_link_names: []
+      _option_module_: eden.options.sensors
+      _option_class_: SensorOptions
+    priv_surface_distance_right_ring_DP:
+      sensor:
+        history_length: 0
+        delay: 0.0
+        jitter: 0.0
+        draw_debug: false
+        entity_idx: 2
+        probe_local_pos:
+        - - 0.018
+          - 0.005
+          - 0.0001
+        probe_radius: 0.5
+        probe_radius_noise: 0.0
+        debug_probe_color:
+        - 0.2
+        - 0.4
+        - 1.0
+        debug_probe_center_radius: 0.0008
+        debug_probe_sphere_opacity: 0.3
+        resolution: 0.0
+        bias: 0.0
+        noise: 0.0
+        random_walk: 0.0
+        link_idx_local: 19
+        pos_offset:
+        - 0.0
+        - 0.0
+        - 0.0
+        euler_offset:
+        - 0.0
+        - 0.0
+        - 0.0
+        track_link_idx:
+        - 1
+        _option_module_: genesis.options.sensors.options
+        _option_class_: SurfaceDistanceProbe
+      attach_entity_name: robot
+      attach_link_name: right_ring_DP
+      track_link_names:
+      - obj
+      _option_module_: eden.options.sensors
+      _option_class_: SensorOptions
+    priv_contact_right_ring_DP:
+      sensor:
+        history_length: 0
+        delay: 0.0
+        jitter: 0.0
+        draw_debug: false
+        entity_idx: 2
+        resolution:
+        - 0.0
+        - 0.0
+        - 0.0
+        bias: 0.0
+        noise: 0.0
+        random_walk: 0.0
+        link_idx_local: 19
+        pos_offset:
+        - 0.0
+        - 0.0
+        - 0.0
+        euler_offset:
+        - 0.0
+        - 0.0
+        - 0.0
+        min_force:
+        - 0.0
+        - 0.0
+        - 0.0
+        max_force:
+        - 10.0
+        - 10.0
+        - 10.0
+        debug_color:
+        - 1.0
+        - 0.0
+        - 1.0
+        - 0.5
+        debug_scale: 0.01
+        _option_module_: genesis.options.sensors.options
+        _option_class_: ContactForce
+      attach_entity_name: robot
+      attach_link_name: right_ring_DP
+      track_link_names: []
+      _option_module_: eden.options.sensors
+      _option_class_: SensorOptions
+    priv_surface_distance_right_pinky_DP:
+      sensor:
+        history_length: 0
+        delay: 0.0
+        jitter: 0.0
+        draw_debug: false
+        entity_idx: 2
+        probe_local_pos:
+        - - 0.018
+          - 0.005
+          - 0.0001
+        probe_radius: 0.5
+        probe_radius_noise: 0.0
+        debug_probe_color:
+        - 0.2
+        - 0.4
+        - 1.0
+        debug_probe_center_radius: 0.0008
+        debug_probe_sphere_opacity: 0.3
+        resolution: 0.0
+        bias: 0.0
+        noise: 0.0
+        random_walk: 0.0
+        link_idx_local: 22
+        pos_offset:
+        - 0.0
+        - 0.0
+        - 0.0
+        euler_offset:
+        - 0.0
+        - 0.0
+        - 0.0
+        track_link_idx:
+        - 1
+        _option_module_: genesis.options.sensors.options
+        _option_class_: SurfaceDistanceProbe
+      attach_entity_name: robot
+      attach_link_name: right_pinky_DP
+      track_link_names:
+      - obj
+      _option_module_: eden.options.sensors
+      _option_class_: SensorOptions
+    priv_contact_right_pinky_DP:
+      sensor:
+        history_length: 0
+        delay: 0.0
+        jitter: 0.0
+        draw_debug: false
+        entity_idx: 2
+        resolution:
+        - 0.0
+        - 0.0
+        - 0.0
+        bias: 0.0
+        noise: 0.0
+        random_walk: 0.0
+        link_idx_local: 22
+        pos_offset:
+        - 0.0
+        - 0.0
+        - 0.0
+        euler_offset:
+        - 0.0
+        - 0.0
+        - 0.0
+        min_force:
+        - 0.0
+        - 0.0
+        - 0.0
+        max_force:
+        - 10.0
+        - 10.0
+        - 10.0
+        debug_color:
+        - 1.0
+        - 0.0
+        - 1.0
+        - 0.5
+        debug_scale: 0.01
+        _option_module_: genesis.options.sensors.options
+        _option_class_: ContactForce
+      attach_entity_name: robot
+      attach_link_name: right_pinky_DP
+      track_link_names: []
+      _option_module_: eden.options.sensors
+      _option_class_: SensorOptions
+    priv_surface_distance_right_thumb_DP:
+      sensor:
+        history_length: 0
+        delay: 0.0
+        jitter: 0.0
+        draw_debug: false
+        entity_idx: 2
+        probe_local_pos:
+        - - 0.02
+          - 0.005
+          - 0.0005
+        probe_radius: 0.5
+        probe_radius_noise: 0.0
+        debug_probe_color:
+        - 0.2
+        - 0.4
+        - 1.0
+        debug_probe_center_radius: 0.0008
+        debug_probe_sphere_opacity: 0.3
+        resolution: 0.0
+        bias: 0.0
+        noise: 0.0
+        random_walk: 0.0
+        link_idx_local: 21
+        pos_offset:
+        - 0.0
+        - 0.0
+        - 0.0
+        euler_offset:
+        - 0.0
+        - 0.0
+        - 0.0
+        track_link_idx:
+        - 1
+        _option_module_: genesis.options.sensors.options
+        _option_class_: SurfaceDistanceProbe
+      attach_entity_name: robot
+      attach_link_name: right_thumb_DP
+      track_link_names:
+      - obj
+      _option_module_: eden.options.sensors
+      _option_class_: SensorOptions
+    priv_contact_right_thumb_DP:
+      sensor:
+        history_length: 0
+        delay: 0.0
+        jitter: 0.0
+        draw_debug: false
+        entity_idx: 2
+        resolution:
+        - 0.0
+        - 0.0
+        - 0.0
+        bias: 0.0
+        noise: 0.0
+        random_walk: 0.0
+        link_idx_local: 21
+        pos_offset:
+        - 0.0
+        - 0.0
+        - 0.0
+        euler_offset:
+        - 0.0
+        - 0.0
+        - 0.0
+        min_force:
+        - 0.0
+        - 0.0
+        - 0.0
+        max_force:
+        - 10.0
+        - 10.0
+        - 10.0
+        debug_color:
+        - 1.0
+        - 0.0
+        - 1.0
+        - 0.5
+        debug_scale: 0.01
+        _option_module_: genesis.options.sensors.options
+        _option_class_: ContactForce
+      attach_entity_name: robot
+      attach_link_name: right_thumb_DP
+      track_link_names: []
+      _option_module_: eden.options.sensors
+      _option_class_: SensorOptions
+  metric_options:
+    objective:
+      success_threshold: 1.0
+      direction: hib
+      metric_mode: interval
+      is_cumulative: false
+      name: episode_reward_metric
+      params:
+        reward_names:
+        - rotation_reward
+        - pose_diff_penalty
+        - termination_penalty
+        - action_rate_penalty
+        weights:
+        - 0.1
+        - -0.1
+        - -1000.0
+        - -0.0001
+      _option_module_: eden.options.managers.metrics
+      _option_class_: MetricTermOptions
+    total_rotation:
+      success_threshold: 6.283185307179586
+      direction: hib
+      metric_mode: reset
+      is_cumulative: false
+      name: screw_total_rotation_metric
+      params:
+        obj_name: obj
+        local_axis:
+        - 0.0
+        - -1.0
+        - 0.0
+      _option_module_: eden.options.managers.metrics
+      _option_class_: MetricTermOptions
+    _option_module_: eden.options.managers.metrics
+    _option_class_: MetricManagerOptions
+  recorder_options:
+    file_handler_options:
+      name: npz_file_handler
+      _option_module_: eden.options.file_handler
+      _option_class_: FileHandlerOptions
+    dataset_export_dir_path: /tmp/eden/logs
+    dataset_filename: dataset
+    dataset_export_mode: export_all
+    override: false
+    _option_module_: eden.options.managers.recorders
+    _option_class_: RecorderManagerOptions
+  renderer_options:
+    _option_module_: genesis.options.renderers
+    _option_class_: RendererOptions
+  language_instructions: []
+  reward_options:
+    rotation_reward:
+      range_s: null
+      weight: 10.0
+      tags: []
+      name: rotation_reward
+      params:
+        local_axis:
+        - 0.0
+        - -1.0
+        - 0.0
+        angvel_clip_min: -0.2
+        angvel_clip_max: 0.2
+      _option_module_: eden.options.managers.rewards
+      _option_class_: RewardTermOptions
+    surface_distance_reward:
+      range_s: null
+      weight: 1.0
+      tags: []
+      name: surface_distance_reward
+      params:
+        obs_name: surface_distance
+        nearest_k: 2
+        sigma: 0.01
+      _option_module_: eden.options.managers.rewards
+      _option_class_: RewardTermOptions
+    obj_dist_penalty:
+      range_s: null
+      weight: -300.0
+      tags: []
+      name: screw_object_dist_penalty
+      params:
+        entity_name: obj
+        margin: 0.01
+      _option_module_: eden.options.managers.rewards
+      _option_class_: RewardTermOptions
+    vertical_alignment_penalty:
+      range_s: null
+      weight: -400.0
+      tags: []
+      name: screw_vertical_alignment_penalty
+      obj_name: obj
+      local_up_axis:
+      - 0.0
+      - 1.0
+      - 0.0
+      tilt_margin: 0.0
+      world_up_axis:
+      - 0.0
+      - 0.0
+      - 1.0
+      link_name: null
+      _option_module_: eden.options.managers.rewards
+      _option_class_: RewardTermOptions
+    pose_diff_penalty:
+      range_s: null
+      weight: -1.0
+      tags: []
+      name: screw_pose_diff_penalty
+      excluded_dof_pattern: thumb
+      entity_name: robot
+      _option_module_: eden.options.managers.rewards
+      _option_class_: RewardTermOptions
+    termination_penalty:
+      range_s: null
+      weight: -100.0
+      tags: []
+      name: termination_penalty
+      params:
+        termination_names:
+        - handle_dropped
+        - nut_stagnation
+      _option_module_: eden.options.managers.rewards
+      _option_class_: RewardTermOptions
+    action_rate_penalty:
+      range_s: null
+      weight: -0.01
+      tags: []
+      name: action_rate_l2
+      params: {}
+      _option_module_: eden.options.managers.rewards
+      _option_class_: RewardTermOptions
+    joint_limits_penalty:
+      range_s: null
+      weight: -40.0
+      tags: []
+      name: dofs_pos_limits
+      params:
+        entity_name: robot
+      _option_module_: eden.options.managers.rewards
+      _option_class_: RewardTermOptions
+    work_penalty:
+      range_s: null
+      weight: -0.001
+      tags: []
+      name: work_penalty
+      params:
+        entity_name: robot
+      _option_module_: eden.options.managers.rewards
+      _option_class_: RewardTermOptions
+    _option_module_: eden.options.managers.rewards
+    _option_class_: RewardManagerOptions
+  termination_options:
+    time_out:
+      time_out: true
+      name: time_out
+      params: {}
+      _option_module_: eden.options.managers.terminations
+      _option_class_: TerminationTermOptions
+    handle_dropped:
+      time_out: false
+      name: screw_handle_fall
+      obj_name: obj
+      local_up_axis:
+      - 0.0
+      - 1.0
+      - 0.0
+      min_alignment: 0.5
+      world_up_axis:
+      - 0.0
+      - 0.0
+      - 1.0
+      link_name: null
+      _option_module_: eden.options.managers.terminations
+      _option_class_: TerminationTermOptions
+    nut_stagnation:
+      time_out: false
+      name: screw_nut_stagnation
+      history_len: 60
+      entity_name: obj
+      stagnation_eps: 0.003
+      command_name: rotation_axis
+      _option_module_: eden.options.managers.terminations
+      _option_class_: TerminationTermOptions
+    _option_module_: eden.options.managers.terminations
+    _option_class_: TerminationManagerOptions
+  command_options:
+    rotation_axis:
+      resampling_time_range:
+      - 999.0
+      - 999.0
+      debug_vis: false
+      name: rotation_axis_command
+      axis_mode: z_only
+      _option_module_: eden.options.managers.commands
+      _option_class_: CommandTermOptions
+    _option_module_: eden.options.managers.commands
+    _option_class_: CommandManagerOptions
+  curriculum_options:
+    _option_module_: eden.options.managers.curricula
+    _option_class_: CurriculumManagerOptions
+  runner_options:
+    seed: 42
+    device: auto
+    num_steps_per_env: 12
+    max_iterations: 10000
+    obs_groups:
+      critic:
+      - priv_proprio
+      - priv_obj_state
+      student:
+      - proprio
+      teacher:
+      - priv_proprio
+      - priv_obj_state
+      rnd_state:
+      - priv_proprio
+      - priv_obj_state
+      actor:
+      - priv_proprio
+      - priv_obj_state
+    clip_actions: null
+    save_interval: 500
+    check_for_nan: true
+    experiment_name: screwdriver
+    run_name: 0523a-screwdriver-sharpa-no_tactile
+    logger: wandb
+    neptune_project: eden
+    wandb_project: eden-screwdriver
+    resume: false
+    load_run: .*
+    load_checkpoint: model_.*.pt
+    class_name: OnPolicyRunner
+    actor:
+      class_name: MLPModel
+      hidden_dims:
+      - 512
+      - 256
+      - 128
+      activation: elu
+      obs_normalization: true
+      distribution_cfg:
+        class_name: GaussianDistribution
+        init_std: 1.0
+        std_type: log
+        _option_module_: eden.options.learning.rsl_rl.rl
+        _option_class_: RslRlGaussianDistributionOptions
+      _option_module_: eden.options.learning.rsl_rl.rl
+      _option_class_: RslRlModelWithDistributionOptions
+    critic:
+      class_name: MLPModel
+      hidden_dims:
+      - 512
+      - 256
+      - 128
+      activation: elu
+      obs_normalization: true
+      _option_module_: eden.options.learning.rsl_rl.rl
+      _option_class_: RslRlModelOptions
+    algorithm:
+      class_name: PPO
+      num_learning_epochs: 5
+      num_mini_batches: 4
+      learning_rate: 0.001
+      schedule: adaptive
+      gamma: 0.99
+      lam: 0.95
+      entropy_coef: 0.0
+      desired_kl: 0.02
+      max_grad_norm: 1.0
+      value_loss_coef: 1.0
+      use_clipped_value_loss: true
+      clip_param: 0.2
+      normalize_advantage_per_mini_batch: false
+      share_cnn_encoders: false
+      rnd_cfg:
+        weight: 100.0
+        weight_schedule: null
+        reward_normalization: true
+        state_normalization: true
+        learning_rate: 0.001
+        num_outputs: 8
+        predictor_hidden_dims:
+        - -1
+        target_hidden_dims:
+        - -1
+        _option_module_: eden.options.learning.rsl_rl.rnd
+        _option_class_: RslRlRndOptions
+      symmetry_cfg: null
+      _option_module_: eden.options.learning.rsl_rl.rl
+      _option_class_: RslRlPpoAlgorithmOptions
+    empirical_normalization: true
+    _option_module_: eden.options.learning.rsl_rl.rl
+    _option_class_: RslRlOnPolicyRunnerOptions
+    enable_print: false

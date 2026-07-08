@@ -1,0 +1,19 @@
+{
+  "name": "xhand1-high",
+  "canvas_hw": [27, 31],
+  "sensors": [
+    {"link": "right_hand_thumb_rota_link2", "row": 0,  "col": 0,  "h": 6, "w": 7},
+    {"link": "right_hand_index_rota_link2", "row": 0,  "col": 7,  "h": 8, "w": 6},
+    {"link": "right_hand_mid_link2",        "row": 0,  "col": 13, "h": 8, "w": 6},
+    {"link": "right_hand_ring_link2",       "row": 0,  "col": 19, "h": 8, "w": 6},
+    {"link": "right_hand_pinky_link2",      "row": 0,  "col": 25, "h": 8, "w": 6},
+
+    {"link": "right_hand_thumb_rota_link1", "row": 8,  "col": 0,  "h": 8, "w": 7},
+    {"link": "right_hand_index_rota_link1", "row": 8,  "col": 7,  "h": 7, "w": 6},
+    {"link": "right_hand_mid_link1",        "row": 8,  "col": 13, "h": 7, "w": 6},
+    {"link": "right_hand_ring_link1",       "row": 8,  "col": 19, "h": 7, "w": 6},
+    {"link": "right_hand_pinky_link1",      "row": 8,  "col": 25, "h": 7, "w": 6},
+
+    {"link": "right_hand_link",             "row": 16, "col": 5,  "h": 11, "w": 20}
+  ]
+}

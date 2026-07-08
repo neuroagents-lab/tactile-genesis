@@ -1,0 +1,105 @@
+# Distillation sweeps consumed by scripts/submit_distill.sh.
+#
+# Each entry under `configs:` is one (task, robot, teacher) sweep, selected by
+# name on the command line, e.g.
+#   `bash scripts/submit_distill.sh types screwdriver-xhand1`.
+# `defaults:` is the menu of options shared by every entry; per-entry fields
+# (task/robot/teacher/placements/extra_flags/...) override or extend it.
+#
+# The submit script picks a *subset* of this menu based on its first arg
+# `<mode>`:
+#   - <mode>=types   -> sweep sensor_types at the pinned baseline
+#                       (sensor_types x [pinned_resolution] x [pinned_noisy]),
+#                       prefixed with `none`. tactile_encoder is auto-picked
+#                       per sensor (grid sensors -> tactile_convrnn,
+#                       gridless/`none` -> rnn).
+#   - <mode>=models  -> sweep tactile_encoders at the pinned baseline against
+#                       models_sensor_types (models_sensor_types x
+#                       [pinned_resolution] x [pinned_noisy] x tactile_encoders).
+#                       No `none` (baseline doesn't depend on encoder).
+#   - <mode>=<type>  -> focused sweep on one sensor type
+#                       ([type] x sensor_resolutions x noisy_modes), prefixed
+#                       with `none`. tactile_encoder auto-picked per sensor.
+#
+# `sensor_placements` x the chosen resolutions form placements; placements then
+# cross-product with the chosen sensor_types x noisy_modes.
+
+defaults:
+  # --- Menus (focused sweeps iterate over the full list) ---
+  sensor_resolutions: [low, med, high]
+  sensor_types: [bool, depth, proximity, agg_force, force, force_torque, elastomer]
+  noisy_modes: [false, true]
+  tactile_encoders: [tactile_cnn, tactile_convrnn, rnn, mlp, tactile_canvas_cnn, tactile_canvas_convrnn]
+
+  # --- Pinned baseline (used by `types` and `models` modes) ---
+  pinned_resolution: med
+  pinned_noisy: false
+
+  # --- `models` mode subset: which sensor types to cross with tactile_encoders ---
+  # models_sensor_types: [bool, force_torque, elastomer]
+  models_sensor_types: [force_torque]
+
+  # How TactileSensorRead reduces the within-step substep history (DECIMATION=5).
+  # none   -- keep all 5 substeps as extra features per probe (5x wider obs)
+  # median -- per-element median across substeps (old default; noise-robust)
+  # last   -- keep only the final substep
+  temporal_reduction: none
+
+  # Total training iterations per student job. Overrides the task's
+  # RUNNER_CFG['max_iterations']. Leave unset (or null) to keep the task default.
+  # Per-config entries below can also set this individually.
+  max_iters: null
+
+configs:
+  in_palm_rotate-xhand1:
+    task: in_palm_rotate
+    robot: xhand1
+    teacher_checkpoint: checkpoints/teachers/in_palm_rotate-xhand1.pt
+    extra_flags: [--obj=primitives]
+    sensor_placements: [tips, hand]
+    max_iters: 6000
+
+
+  in_palm_rotate-xhand1-models:
+    task: in_palm_rotate
+    robot: xhand1
+    teacher_checkpoint: checkpoints/teachers/in_palm_rotate-xhand1.pt
+    extra_flags: [--obj=primitives]
+    sensor_placements: [hand]
+    tactile_encoders: [tactile_cnn, tactile_convrnn, tactile_convrnn_lstm, tactile_convrnn_big, rnn, mlp, tactile_canvas_cnn, tactile_canvas_convrnn]
+    pinned_resolution: med
+    max_iters: 6000
+
+  screwdriver-xhand1:
+    task: screwdriver
+    robot: xhand1
+    teacher_checkpoint: checkpoints/teachers/screwdriver-xhand1.pt
+    # Block form: commas inside a value would otherwise split flow lists.
+    extra_flags:
+      - --no-include_ext_force
+    sensor_placements: [fingers] # [tips, fingers]
+    max_iters: 2000
+
+  in_hand_repose-xhand1:
+    task: in_hand_repose
+    robot: xhand1
+    teacher_checkpoint: checkpoints/teachers/in_hand_repose-xhand1.pt
+    extra_flags: [--obj=primitives]
+    sensor_placements: [hand]
+    max_iters: 6000
+
+  in_hand_repose-sharpa:
+    task: in_hand_repose
+    robot: sharpa
+    teacher_checkpoint: checkpoints/teachers/in_hand_repose-sharpa.pt
+    extra_flags: [--obj=primitives]
+    sensor_placements: [hand]
+    max_iters: 6000
+
+  # screwdriver-sharpa:
+  #   task: screwdriver
+  #   robot: sharpa
+  #   teacher_checkpoint: checkpoints/teachers/screwdriver-sharpa.pt
+  #   extra_flags:
+  #     - --no-include_ext_force
+  #   sensor_placements: [fingers] # [tips, fingers]

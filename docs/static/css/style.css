@@ -200,7 +200,7 @@ figcaption {
 /* ===================== CARDS ===================== */
 .cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: 1fr;
   gap: 20px;
 }
 .card {
@@ -224,6 +224,16 @@ figcaption {
 }
 .card h3 { font-size: 1.12rem; margin: 0 0 8px; letter-spacing: -0.01em; }
 .card p { font-size: 0.97rem !important; color: var(--muted); margin: 0; }
+
+.key-findings-figure {
+  margin-top: 24px;
+}
+
+@media (min-width: 720px) {
+  .cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
 
 /* ===================== BIBTEX ===================== */
 .bibtex {

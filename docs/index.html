@@ -61,7 +61,7 @@
   <!-- ===================== TEASER VIDEO ===================== -->
   <section id="video" class="section section--tight">
     <div class="container">
-      <video class="teaser" controls autoplay muted loop playsinline poster="static/images/thumbnail.png">
+      <video class="teaser" controls muted playsinline poster="static/images/thumbnail.png">
         <source src="static/videos/overview.mp4" type="video/mp4">
       </video>
       <p class="caption">
@@ -70,26 +70,6 @@
         exposing a representative set of tactile sensing abstractions &mdash; binary contact, contact depth, per-taxel
         force/torque, elastomer marker displacement, geometry-aware proximity, and a voxelized temperature field &mdash;
         under a common, configurable interface that runs across thousands of parallel environments on a single GPU.
-      </p>
-    </div>
-  </section>
-
-  <!-- ===================== ABSTRACT ===================== -->
-  <section class="section">
-    <div class="container container--narrow">
-      <h2>Abstract</h2>
-      <p>
-        
-Tactile sensing is critical for contact-rich dexterous manipulation, yet it remains unclear which tactile abstractions a policy needs and when richer tactile fields justify their hardware cost.
-This is hard to study empirically: each sensor effectively defines a new robot, and no lab can replicate the same learning experiment across all of them.
-We present Tactile Genesis, a GPU-parallel tactile sensor simulation platform that exposes binary contact, contact depth, per-taxel kinematic force/torque, elastomer marker displacement, geometry-aware proximity, contact audio, and a voxelized temperature field (the first of its kind in robot learning physics simulation platforms) under a common interface, with configurable placement, resolution, and a realistic noise model (drift, hysteresis, dead taxels, crosstalk).
-It scales past 20,000 parallel environments and 1,000 taxels on a single GPU, improving throughput by 3 to 20 times over previous tactile simulators.
-We train teacher-student policies on three dexterous tasks, ablating sensor type, placement, resolution, and noise, and verify transfer to the real XHand1.
-Proprioception alone is insufficient on every task.
-Sensor placement dominates sensor type: fingertip-only coverage trails whole-hand coverage by a wide margin, while adding the palm and proximal phalanges closes most of the gap to the privileged teacher.
-Resolution matters far less than coverage: placing 200 taxels across the whole hand suffices across tasks.
-We find that force/torque per taxel is consistently the most useful sensor type.
-These results give concrete guidance for both future tactile hardware design for improving robot hands and policy-side observation choice in dexterous manipulation.
       </p>
     </div>
   </section>
@@ -152,20 +132,19 @@ These results give concrete guidance for both future tactile hardware design for
         <div class="card">
           <div class="card__num">01</div>
           <h3>Proprioception is not enough</h3>
-          <p>The proprioception-only baseline trails every tactile student on all three tasks &mdash; even the cheapest
-          binary-contact variant. Touch is required to recover task-relevant object state.</p>
+          <p>The proprioception-only baseline trails every tactile student on all three tasks.
+          Touch is required to recover task-relevant object state.</p>
         </div>
         <div class="card">
           <div class="card__num">02</div>
           <h3>Placement &gt; sensor type</h3>
           <p>Fingertip-only sensing (what most commercial hardware supports) trails whole-hand coverage by a wide
-          margin. Adding palm and proximal phalanges matters more than upgrading the fingertip sensor.</p>
+          margin. Sensorizing palm and proximal phalanges matters more than upgrading the fingertip sensor.</p>
         </div>
         <div class="card">
           <div class="card__num">03</div>
           <h3>Force/torque is a robust default</h3>
-          <p>Aggregated across tasks, per-taxel force/torque matches or outperforms every other abstraction &mdash; our
-          recommended default when hardware allows.</p>
+          <p>Aggregated across tasks, per-taxel force/torque matches or outperforms every other tactile representation.</p>
         </div>
         <div class="card">
           <div class="card__num">04</div>
@@ -174,16 +153,18 @@ These results give concrete guidance for both future tactile hardware design for
           all tasks studied.</p>
         </div>
       </div>
+      <figure class="key-findings-figure">
+        <img src="static/images/comparison.png" alt="Comparison figure for tactile sensing results" loading="lazy">
+      </figure>
     </div>
   </section>
-
 
   <!-- ===================== CONTACT AUDIO DEMO ===================== -->
   <section class="section">
     <div class="container">
       <h2>Contact Audio Demonstration</h2>
       <figure class="media-stack">
-        <video class="demo-video" controls loop playsinline preload="metadata">
+        <video class="demo-video" controls playsinline preload="metadata">
           <source src="static/videos/contactaudio.mp4" type="video/mp4">
         </video>
         <img src="static/images/contactaudio.png" alt="Spectrogram of simulated contact audio across materials" loading="lazy">

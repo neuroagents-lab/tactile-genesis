@@ -1,0 +1,79 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "eden"
+version = "0.1.0"
+description = "Eden: Embodied-AI Development Environments Nexus"
+readme = "README.md"
+requires-python = ">=3.11"
+license = {text = "BSD-3-Clause"}
+authors = [{name = "Kashu Yamazaki"}]
+dependencies = [
+  "numpydantic>=1.7.0",
+  "genesis-world",
+  "torch>=2.9.2",
+  "numpy>=1.26.4",
+  "wandb",
+  "scipy>=1.17.0",
+  "strenum",
+  "huggingface_hub",
+  "gymnasium",
+  "prettytable",
+  "rsl-rl-lib>=3.0",
+  "tqdm",
+  "pyyaml",
+  "viser",  # required by eden.extensions.visualization.viser
+  "trimesh",  # eagerly imported by eden.utils.mesh / eden.utils.pc
+  "shapely",  # eagerly imported by eden.utils.mesh
+]
+
+# NOTE: Trimmed for the tactile_genesis monorepo. Optional extras for features
+# that were stripped out of Eden (gaussian-splat vis, retargeting/soma, dex
+# retargeter, franka/gello real-robot stacks, nyx) have been removed. `viser`
+# now lives in the base deps since eden.extensions.visualization.viser needs it.
+[project.optional-dependencies]
+dev = [
+  "pytest",
+  "ruff",
+  "pre-commit"
+]
+
+[project.scripts]
+eden = "eden.__main__:main"
+
+[tool.ruff]
+line-length = 120
+
+[tool.ruff.lint]
+# Default ruff rules (E, F) plus pydocstyle (D) to enforce NumPy-style docstrings.
+extend-select = ["D", "D417"]
+# Every module and package must carry a top-of-file docstring (D100/D104) as a
+# navigation aid. We still don't require a docstring on every class/method/function
+# (D101/D102/D103/D105) — but any docstring that exists must be valid NumPy style
+# and document all of its parameters (D417).
+# D205/D400/D401/D404 are relaxed: the codebase writes flowing multi-line summary
+# docstrings rather than the one-line-summary-plus-blank-line form those rules enforce.
+extend-ignore = ["D100", "D101", "D102", "D103", "D105", "D205", "D400", "D401", "D404"]
+
+[tool.ruff.lint.per-file-ignores]
+"eden/__init__.py" = ["E402"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "numpy"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = [
+  "eden",
+  "eden.*"
+]
+
+# Monorepo layout: resolve genesis-world / rsl-rl-lib from the sibling checkouts so
+# Eden stays self-consistent when installed standalone from within the monorepo.
+# (The labmaze/pymeshlab overrides and chumpy build deps were only needed by the
+# now-removed dm_control / soma-retargeter extras.)
+[tool.uv.sources]
+genesis-world = { path = "../Genesis", editable = true }
+rsl-rl-lib = { path = "../rsl_rl", editable = true }

@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<!-- 1 m cube centered at the link origin; each face has its own material for visual debugging/orientation.  -->
+<robot name="dex_cube">
+  <link name="cube">
+
+    <!-- Solid collision (single box) -->
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="1 1 1"/>
+      </geometry>
+    </collision>
+
+    <!-- Six thin face shells (s = 1, eps = 0.0001) -->
+    <visual>
+      <origin xyz="0.49995 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.0001 1 1"/>
+      </geometry>
+      <material name="face_pos_x">
+        <color rgba="1 0 0 1"/>
+      </material>
+    </visual>
+    <visual>
+      <origin xyz="-0.49995 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.0001 1 1"/>
+      </geometry>
+      <material name="face_neg_x">
+        <color rgba="1 0 1 1"/>
+      </material>
+    </visual>
+    <visual>
+      <origin xyz="0 0.49995 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="1 0.0001 1"/>
+      </geometry>
+      <material name="face_pos_y">
+        <color rgba="0 1 0 1"/>
+      </material>
+    </visual>
+    <visual>
+      <origin xyz="0 -0.49995 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="1 0.0001 1"/>
+      </geometry>
+      <material name="face_neg_y">
+        <color rgba="1 1 0 1"/>
+      </material>
+    </visual>
+    <visual>
+      <origin xyz="0 0 0.49995" rpy="0 0 0"/>
+      <geometry>
+        <box size="1 1 0.0001"/>
+      </geometry>
+      <material name="face_pos_z">
+        <color rgba="0 0 1 1"/>
+      </material>
+    </visual>
+    <visual>
+      <origin xyz="0 0 -0.49995" rpy="0 0 0"/>
+      <geometry>
+        <box size="1 1 0.0001"/>
+      </geometry>
+      <material name="face_neg_z">
+        <color rgba="0 1 1 1"/>
+      </material>
+    </visual>
+  </link>
+</robot>

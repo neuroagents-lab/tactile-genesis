@@ -1,0 +1,57 @@
+[project]
+name = "tactile_genesis"
+version = "0.1.0"
+description = "Reinforcement learning on dexterous robot hands with various tactile sensors in Genesis simulator."
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "eden",
+    "genesis-world[dev]",
+    "rsl-rl-lib",
+    "numpy==2.3.5",
+    "optuna>=4.7.0",
+    "optuna-dashboard>=0.20.0",
+    "PyYAML>=6.0.2",
+    "tensorboard>=2.20.0",
+    "viser>=1.0.21",
+    "wandb>=0.23.0",
+    # Hardcode torch manually with the right CUDA index for (old) drivers, e.g.:
+    # pip install "torch==2.10.0+cu128" --index-url https://download.pytorch.org/whl/cu128
+    # "torch==2.10.0",
+]
+
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+# The project's own code lives under src/ as flat top-level modules (registry.py,
+# optimization.py, ...) and namespace packages (tasks/, entities/, ...). Installing
+# editable puts them on the import path, so `uv run python main.py` works without
+# needing `PYTHONPATH=src`.
+[tool.setuptools]
+package-dir = { "" = "src" }
+py-modules = [
+    "deploy",
+    "model_config",
+    "optimization",
+    "registry",
+    "shared_terms",
+    "tactile_compare",
+    "tactile_record",
+    "tactile_sensors",
+    "task_mods",
+    "utils",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+namespaces = true
+
+# Monorepo layout: resolve the sibling checkouts of eden/genesis/rsl_rl as editable
+# local packages instead of the Milotrince git forks. These sources override the
+# package origin across the whole resolution graph, so Eden's own transitive
+# genesis-world / rsl-rl-lib deps also point at the local checkouts.
+[tool.uv.sources]
+eden = { path = "../Eden", editable = true }
+genesis-world = { path = "../Genesis", editable = true }
+rsl-rl-lib = { path = "../rsl_rl", editable = true }
