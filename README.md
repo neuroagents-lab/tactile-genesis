@@ -1,5 +1,7 @@
 # Tactile Genesis
 
+https://github.com/user-attachments/assets/9d8bb278-fbc8-41f4-b1b2-ab9ce572c294
+
 This repository reflects the self-contained code snapshot to reproduce the paper, [Tactile Genesis](https://arxiv.org/abs/2606.22332).
 **Please note**, if you wish to use tactile sensors for your own project, use the latest [Genesis World](https://github.com/Genesis-Embodied-AI/genesis-world) physics engine which includes our tactile sensors,
 and optionally, the official [Eden](https://github.com/embodied-ai-nexus/Eden) if you require a managed learning framework.
